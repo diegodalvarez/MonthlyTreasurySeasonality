@@ -24,7 +24,13 @@ class MonthlyReturns(DataManager):
         if len(df) > 6:
             
             df_tmp = df.sort_values("date")
+            df_out = (df_tmp.tail(
+                shifter).
+                assign(
+                    group = "back",
+                    days  = [shifter - i for i in range(shifter)]))
             
+            '''
             df_out = (pd.concat([
                 df_tmp.head(shifter).assign(
                     group = "front",
@@ -32,6 +38,7 @@ class MonthlyReturns(DataManager):
                 df_tmp.tail(shifter).assign(
                     group = "back",
                     days  = [shifter - i for i in range(shifter)])]))
+            '''
             
             return df_out
             
